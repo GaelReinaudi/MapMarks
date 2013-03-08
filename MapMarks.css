@@ -1,0 +1,23 @@
+/* CSS declarations go here */
+
+
+.page {
+	position: absolute;
+	height: 30px;
+	padding: 20px;
+	display: block;
+	color: white;
+	background: #478FB2;
+    box-shadow: 1px 2px 2px #000;
+
+}
+
+#drop {
+  min-height: 100px;
+  width: 200px;
+  border: 3px dashed #ccc;
+  margin: 10px;
+  padding: 10px;
+}
+
+#draggable { width: 150px; height: 150px; padding: 0.5em; 	background: #f0fF02;}

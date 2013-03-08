@@ -1,0 +1,31 @@
+<head>
+<title>MapMarks</title>  
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+</head>
+
+<body>
+  <div id="drop"></div>
+<div class="page aaa">
+  <p>Drag me around</p>
+</div>
+	<div id="theRect", style="width:400px;height:400px;border:1px solid #000;"> </div>
+	{{> hello}}
+	{{> pages}}
+</body>
+
+<template name="hello">
+	 <h1>Hello World!</h1>
+	{{greeting}}
+	<input type="button" value="Click!" />
+</template>
+
+<template name="pages">
+	{{#each visibles}}
+		{{> page}}
+	{{/each}}
+</template>
+
+<template name="page">
+<div  class="page aaa" style="left:{{x}}px; top:{{y}}px;">
+<p>Click me</p>
+</template>

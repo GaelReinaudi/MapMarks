@@ -1,16 +1,20 @@
 <head>
 <title>MapMarks</title>  
-<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 </head>
 
 <body>
-  <div id="drop"></div>
-<div class="page aaa">
-  <p>Drag me around</p>
-</div>
-	<div id="theRect", style="width:400px;height:400px;border:1px solid #000;"> </div>
+	<div id="theRect", style="width:400px;height:100px;position: absolute;left:-100px;border:1px solid #000;"> </div>
+	<div id="drop"></div>
+	
+	<div class="page aaa">
+		<p>Drag me around</p>
+		<iframe  style="zoom:100%" width="100px" height="100px" src="http://www.w3schools.com"></iframe>
+	</div>
+	
 	{{> hello}}
+	
 	{{> pages}}
+
 </body>
 
 <template name="hello">

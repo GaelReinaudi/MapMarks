@@ -1,6 +1,7 @@
 Pages = new Meteor.Collection('pages');
 
 if (Meteor.isClient) {	
+	var zoomLevel = 1.0;
 	
 	Template.hello.greeting = function () {
 		return "Welcome to MapMarks.";
@@ -24,44 +25,41 @@ if (Meteor.isClient) {
 				console.log("Handler for .click() called.");
 			});
 
-		  $(function() {
-			    var $start_counter = $( "#event-start" ),
-			      $drag_counter = $( "#event-drag" ),
-			      $stop_counter = $( "#event-stop" ),
-			      counts = [ 0, 0, 0 ];
-			 
-			    $( ".aaa" ).draggable({
-			      start: function() {
-			        counts[ 0 ]++;
-			        updateCounterStatus( $start_counter, counts[ 0 ] );
-			      },
-			      drag: function() {
-			        counts[ 1 ]++;
-			        updateCounterStatus( $drag_counter, counts[ 1 ] );
-			      },
-			      stop: function() {
-			        counts[ 2 ]++;
-			        updateCounterStatus( $stop_counter, counts[ 2 ] );
-			      }
-			    });
-			 
-			    function updateCounterStatus( $event_counter, new_count ) {
-			      // first update the status visually...
-			      if ( !$event_counter.hasClass( "ui-state-hover" ) ) {
-			        $event_counter.addClass( "ui-state-hover" )
-			          .siblings().removeClass( "ui-state-hover" );
-			      }
-			      // ...then update the numbers
-			      $( "span.count", $event_counter ).text( new_count );
-			    }
-			  });
+
 	});
 	
 	
 	window.onmousewheel = (function(e) {
-		if(typeof console !== 'undefined')
-			console.log("Handler for .wheel() called." + e.wheelDelta + " " + e.x + " " + e.y);
+		var scrolled = e.wheelDelta / 120.0;
 		e.preventDefault();
+		zoomLevel *= 1.0 + scrolled / 10;
+		
+		//document.body.style.zoom = zoomLevel;
+		var mouseOffsetX = e.x * zoomLevel;
+		var mouseOffsetY = e.pageY * zoomLevel;
+		if( 1 && zoomLevel <= 2.0) {
+			var origin = mouseOffsetX +'px '+ mouseOffsetY +'px';
+			var transform = 'scale('+ zoomLevel +') translate('+ -mouseOffsetX +'px,'+ -mouseOffsetY +'px)';
+
+			document.body.style.transformOrigin = origin;
+			document.body.style.OTransformOrigin = origin;
+			document.body.style.msTransformOrigin = origin;
+			document.body.style.MozTransformOrigin = origin;
+			document.body.style.WebkitTransformOrigin = origin;
+
+			document.body.style.transform = transform;
+			document.body.style.OTransform = transform;
+			document.body.style.msTransform = transform;
+			document.body.style.MozTransform = transform;
+			document.body.style.WebkitTransform = transform;
+		}
+		if(typeof console !== 'undefined') {
+			//console.log("Handler for .wheel() called." + scrolled);
+			console.log("e.xy:                " + e.x + " : " + e.y);
+			console.log("e.pageX:          " + e.pageX + " : " + e.pageY);
+			console.log("window.pageXYOffset: " + window.pageXOffset + " : " + window.pageYOffset);
+			console.log("zoomLevel: " + zoomLevel);
+		}
 	});
 
 }
@@ -73,3 +71,5 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+
+

@@ -25,7 +25,8 @@
 </template>
 
 <template name="page">
-<iframe src="{{url}}" width="80%" class="page"></iframe>
-<!--<div  class="page aaa" style="left:{{x}}px; top:{{y}}px;">
-<p>Click me</p>-->
+<div style="position:relative;">
+	<iframe class="page" sandbox src="{{url}}" width="1000px"></iframe>
+	<div  class="page" style="position:absolute; width:1000px; top:0; left:0; border:10px solid #00A;">
+</div>
 </template>

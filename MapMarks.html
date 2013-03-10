@@ -11,9 +11,8 @@
 			<div class="page aaa">
 				<p>Drag me around</p>
 				<iframe  width="100px" height="100px" src="http://www.w3schools.com"></iframe>
-			</div>
+			</div>-->
 	
-			{{> hello}}
 	
 			{{> pages}}
 		</div>
@@ -34,6 +33,7 @@
 </template>
 
 <template name="page">
-<div  class="page aaa" style="left:{{x}}px; top:{{y}}px;">
-<p>Click me</p>
+<iframe src="{{url}}" width="80%" class="page"></iframe>
+<!--<div  class="page aaa" style="left:{{x}}px; top:{{y}}px;">
+<p>Click me</p>-->
 </template>

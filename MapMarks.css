@@ -1,15 +1,19 @@
 /* CSS declarations go here */
-
+body {
+	-webkit-transform: scale(0.33);
+}
 
 .page {
-	position: absolute;
-	height: 30px;
-	padding: 20px;
+	margin: 0;
+	padding: 0;
+	height: 500px;
 	display: block;
 	color: white;
-	background: #478FB2;
-    box-shadow: 1px 2px 2px #000;
-
+}
+.cover {
+	height: 100px;
+	width: 100px;
+	background-color: blue;
 }
 
 #drop {

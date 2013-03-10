@@ -27,7 +27,7 @@ if (Meteor.isClient) {
 
 	});
 	
-	var orX = 0;
+/*	var orX = 0;
 	var orY = 0;
 	var trX = 0;
 	var trY = 0;
@@ -69,7 +69,7 @@ if (Meteor.isClient) {
 			console.log("window.pageXYOffset: " + window.pageXOffset + " : " + window.pageYOffset);
 			console.log("zoomLevel: " + zoomLevel);
 		}
-	});
+	});*/
 
 }
 

@@ -44,7 +44,7 @@ if (Meteor.isClient) {
 		//document.body.style.zoom = zoomLevel;
 		var mouseOffsetX = e.x * zoomLevel;
 		var mouseOffsetY = e.pageY * zoomLevel;
-		if( 1 && zoomLevel <= 2.0) {
+		if( 1 && zoomLevel <= 2.0 && zoomLevel >= 0.1) {
 			var origin = trX +'px '+ trY +'px';
 			var transform = '';
 			//transform += ' translate('+ -trX +'px,'+ -trY +'px)';
@@ -63,11 +63,10 @@ if (Meteor.isClient) {
 			$space.style.WebkitTransform = transform;
 		}
 		if(typeof console !== 'undefined') {
-			//console.log("Handler for .wheel() called." + scrolled);
 			console.log("e.xy:                " + e.x + " : " + e.y);
-			console.log("e.pageX:          " + e.pageX + " : " + e.pageY);
+			console.log("e.pageX:             " + e.pageX + " : " + e.pageY);
 			console.log("window.pageXYOffset: " + window.pageXOffset + " : " + window.pageYOffset);
-			console.log("zoomLevel: " + zoomLevel);
+			console.log("zoomLevel:           " + zoomLevel);
 		}
 	});
 

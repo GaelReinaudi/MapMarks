@@ -1,6 +1,6 @@
 /* CSS declarations go here */
 body {
-	-webkit-transform: scale(0.33);
+	//-webkit-transform: scale(0.33);
 }
 
 .page {

@@ -4,12 +4,16 @@ body {
 }
 
 .page {
-	position: absolute;
 	margin: 0;
 	padding: 0;
 	height: 500px;
 	display: block;
 	color: white;
+}
+.cover {
+	height: 100px;
+	width: 100px;
+	background-color: blue;
 }
 
 #drop {

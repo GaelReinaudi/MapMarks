@@ -3,18 +3,20 @@
 </head>
 
 <body>
-	<div id="theRect", style="width:400px;height:100px;position: absolute;left:-100px;border:1px solid #000;"> </div>
-	<div id="drop"></div>
+	<div id="theRect", style="width:600px;height:600px; position:absolute; left:0px;border:10px solid #000;"> 
+		<div id="theSpace", style="width:600px;height:600px; position:absolute; center:-100px;border:10px solid #0D0;"> 
+			<div id="drop"></div>
 	
-	<div class="page aaa">
-		<p>Drag me around</p>
-		<iframe  style="zoom:100%" width="100px" height="100px" src="http://www.w3schools.com"></iframe>
+			<div class="page aaa">
+				<p>Drag me around</p>
+				<iframe  width="100px" height="100px" src="http://www.w3schools.com"></iframe>
+			</div>
+	
+			{{> hello}}
+	
+			{{> pages}}
+		</div>
 	</div>
-	
-	{{> hello}}
-	
-	{{> pages}}
-
 </body>
 
 <template name="hello">

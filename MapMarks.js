@@ -1,7 +1,6 @@
 Pages = new Meteor.Collection('pages');
 
 if (Meteor.isClient) {	
-	var zoomLevel = 1.0;
 	
 	Template.hello.greeting = function () {
 		return "Welcome to MapMarks.";
@@ -28,30 +27,39 @@ if (Meteor.isClient) {
 
 	});
 	
-	
+	var orX = 0;
+	var orY = 0;
+	var trX = 200;
+	var trY = 0;
+	var zoomLevel = 1.0;
 	window.onmousewheel = (function(e) {
-		var scrolled = e.wheelDelta / 120.0;
 		e.preventDefault();
+		var $space = document.getElementById("theSpace");
+		
+		var currentPageX = e.pageX;
+		
+		var scrolled = e.wheelDelta / 120.0;
 		zoomLevel *= 1.0 + scrolled / 10;
 		
 		//document.body.style.zoom = zoomLevel;
 		var mouseOffsetX = e.x * zoomLevel;
 		var mouseOffsetY = e.pageY * zoomLevel;
 		if( 1 && zoomLevel <= 2.0) {
-			var origin = mouseOffsetX +'px '+ mouseOffsetY +'px';
-			var transform = 'scale('+ zoomLevel +') translate('+ -mouseOffsetX +'px,'+ -mouseOffsetY +'px)';
+			var origin = -trX +'px '+ 0 +'px';
+			var transform = '';
+			transform += ' translate('+ trX +'px,'+ trY +'px)';
+			transform += 'scale('+ zoomLevel +')';
 
-			document.body.style.transformOrigin = origin;
-			document.body.style.OTransformOrigin = origin;
-			document.body.style.msTransformOrigin = origin;
-			document.body.style.MozTransformOrigin = origin;
-			document.body.style.WebkitTransformOrigin = origin;
-
-			document.body.style.transform = transform;
-			document.body.style.OTransform = transform;
-			document.body.style.msTransform = transform;
-			document.body.style.MozTransform = transform;
-			document.body.style.WebkitTransform = transform;
+//			$space.style.transformOrigin = origin;
+//			$space.style.OTransformOrigin = origin;
+//			$space.style.msTransformOrigin = origin;
+//			$space.style.MozTransformOrigin = origin;
+			$space.style.WebkitTransformOrigin = origin;
+//			$space.style.transform = transform;
+//			$space.style.OTransform = transform;
+//			$space.style.msTransform = transform;
+//			$space.style.MozTransform = transform;
+			$space.style.WebkitTransform = transform;
 		}
 		if(typeof console !== 'undefined') {
 			//console.log("Handler for .wheel() called." + scrolled);

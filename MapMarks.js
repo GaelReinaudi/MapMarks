@@ -19,9 +19,9 @@ if (Meteor.isClient) {
 	};
 	
 	Meteor.startup(function () {
-		$("#theRect").click(function() {
+		$("#theRect").click(function(e) {
 			if(typeof console !== 'undefined')
-				console.log("Handler for .click() called.");
+				console.log("Handler for .click() called,(" + e.pageX + "," + e.pageY + ")");
 			});
 
 
@@ -29,7 +29,7 @@ if (Meteor.isClient) {
 	
 	var orX = 0;
 	var orY = 0;
-	var trX = 200;
+	var trX = 0;
 	var trY = 0;
 	var zoomLevel = 1.0;
 	window.onmousewheel = (function(e) {
@@ -45,10 +45,11 @@ if (Meteor.isClient) {
 		var mouseOffsetX = e.x * zoomLevel;
 		var mouseOffsetY = e.pageY * zoomLevel;
 		if( 1 && zoomLevel <= 2.0) {
-			var origin = -trX +'px '+ 0 +'px';
+			var origin = trX +'px '+ trY +'px';
 			var transform = '';
-			transform += ' translate('+ trX +'px,'+ trY +'px)';
-			transform += 'scale('+ zoomLevel +')';
+			//transform += ' translate('+ -trX +'px,'+ -trY +'px)';
+			transform += ' scale('+ zoomLevel +')';
+			transform += ' translate('+ -trX +'px,'+ -trY +'px)';
 
 //			$space.style.transformOrigin = origin;
 //			$space.style.OTransformOrigin = origin;

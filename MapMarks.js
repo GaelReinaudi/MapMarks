@@ -45,11 +45,17 @@ if (Meteor.isClient) {
 		$(".addPage").click(function(e) {
 			if(typeof console !== 'undefined')
 				console.log("Handdddddddddddddddddd,(" + e.pageX + "," + e.pageY + ")");
+			var tag = ["News"];
+			Pages.insert({
+				url: "www.google.com",
+				timestamp: (new Date()).getTime(),
+				tags: tag ? [tag] : []
+				});
 			});		
 		
 		//! zoom out at the default level on startup
 		space = document.getElementById("theSpace");
-		anchorSpace = document.getElementById("centerSpace");
+		anchorSpace = document.getElementById("anchorSpace");
 		window.onmousewheel();
 		
 		
@@ -165,21 +171,23 @@ if (Meteor.isClient) {
 						}
 console.log("options " + "x "+options.x + " y "+options.y + " w "+options.width + " h "+options.height);
 
-						if( options.scale != 1 ) {
-							var scrollOffset = getScrollOffset();
-							scrollOffset.x /= zoomLevel;
-							scrollOffset.y /= zoomLevel;
-							options.x /= zoomLevel;
-							options.y /= zoomLevel;
-console.log("scrollOffset " + "x "+scrollOffset.x + " y "+scrollOffset.y);
-options.x += anchorSpace.getBoundingClientRect().left;
-options.y += anchorSpace.getBoundingClientRect().top;
+						var scrollOffset = getScrollOffset();
+						scrollOffset.x /= zoomLevel;
+						scrollOffset.y /= zoomLevel;
+						options.x /= zoomLevel;
+						options.y /= zoomLevel;
 
-							magnify( scrollOffset.x, scrollOffset.y, options.x, options.y, 1 );
-							engagedPage = options.element;
-							$(engagedPage).hide();
-							console.log("Engaging");
-						}
+						var scale = 1;
+						scale = window.innerWidth / 1050;
+						options.x *= scale;
+						options.y *= scale;
+						options.x += anchorSpace.getBoundingClientRect().left;
+						options.y += anchorSpace.getBoundingClientRect().top;
+
+						magnify( scrollOffset.x, scrollOffset.y, options.x, options.y, scale );
+						engagedPage = options.element;
+						$(engagedPage).hide();
+						console.log("Engaging");
 					}
 				},
 
@@ -212,6 +220,8 @@ options.y += anchorSpace.getBoundingClientRect().top;
 			var scrolled = e.wheelDelta / 120.0;
 			zoomLevel *= 1.0 + scrolled / 10;
 		}
+		//$("#zoomingRect").left = 20px;
+		//return;
 		if(zoomLevel <= 2.0) {
 			var origin = trX +'px '+ trY +'px';
 			var transform = '';

@@ -30,11 +30,11 @@
 
 <template name="page">
 <div class="pageWrapper">
-	<iframe class="page" src="{{url}}"></iframe>
+	<iframe class="page" src="{{url}}" sandbox></iframe>
 	<div class="protectiveFilm"></div>
 </div>
 </template>
 
 <template name="zoomingTarget">
-<div id="zoomingRect"></div>
+<div id="zoomingRect" style="left:{{x}}px; top:{{y}}px;"></div>
 </template>

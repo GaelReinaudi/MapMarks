@@ -67,10 +67,11 @@ h1 {
 	background-color: blue;
 }
 #zoomingRect {
-	height: 10000px;
-	width: 10000px;
+	height: 500px;
+	width: 500px;
+	left: 0px;
+	top: 0px;
 	position: absolute;
-	background-color: blue;
+	border:10px solid blue;
 }
 
-#draggable { width: 150px; height: 150px; padding: 0.5em; 	background: #f0fF02;}

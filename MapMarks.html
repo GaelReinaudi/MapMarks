@@ -8,6 +8,7 @@
 			<div id="theSpace", style=""> 
 				{{> pages}}
 			</div>
+			{{> zoomingTarget}}
 		</div>
 	</div>
 </body>
@@ -32,4 +33,14 @@
 	<iframe class="page" sandbox src="{{url}}" width="1000px"></iframe>
 	<div  class="protectiveFilm" style="width:1000px;">
 </div>
+</template>
+
+<template name="zoomingTarget">
+<div id="zoomingRect"></div>
+	<div class="pages">
+	{{#each visibles}}
+		{{> page}}
+	{{/each}}
+	<div class="addPage"></div>
+	</div>
 </template>

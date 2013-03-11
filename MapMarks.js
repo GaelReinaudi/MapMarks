@@ -4,6 +4,7 @@ var zoom;
 var zoomLevel = 0.2;
 var space;
 var anchorSpace;
+var engagedPage;// will be 0 if disengaged or the element it is engaged on
 
 if (Meteor.isClient) {	
 	Template.hello.greeting = function () {
@@ -32,10 +33,7 @@ if (Meteor.isClient) {
 		'click' : function (e) {
 			if (typeof console !== 'undefined')
 				console.log("You clicked the page: " + this._id + " (" + e.pageX + "," + e.pageY + ")");
-			//Panels.remove({_id: this._id});
-			console.log(zoom);
-			//zoom.to({ element: $(this._id) });
-			zoom.to({ element: e.target });
+				zoom.to({ element: e.target });
 			}
 		
 	});
@@ -55,16 +53,12 @@ if (Meteor.isClient) {
 		
 //////////////////////////// ZOOM 		
 		zoom = (function(){
-			// The current zoom level (scale)
-			var level = zoomLevel;
-
 			// Check for transform support so that we can fallback otherwise
 			var supportsTransforms = 	'WebkitTransform' in space.style ||
 										'MozTransform' in space.style ||
 										'msTransform' in space.style ||
 										'OTransform' in space.style ||
 										'transform' in space.style;
-		    
 			if( supportsTransforms ) {
 				// The easing that will be applied when we zoom in/out
 				space.style.transition = 'transform 0.8s ease';
@@ -73,14 +67,12 @@ if (Meteor.isClient) {
 				space.style.MozTransition = '-moz-transform 0.8s ease';
 				space.style.WebkitTransition = '-webkit-transform 0.8s ease';
 			}
-
 			// Zoom out if the user hits escape
 			document.addEventListener( 'keyup', function( event ) {
 				if( event.keyCode === 27 ) {
 					zoom.out();
 				}
 			} );
-
 			/**
 			 * Applies the CSS required to zoom in, prioritizes use of CSS3 
 			 * transforms but falls back on zoom for IE.
@@ -92,17 +84,16 @@ if (Meteor.isClient) {
 			 * @param {Number} scale 
 			 */
 			function magnify( pageOffsetX, pageOffsetY, elementOffsetX, elementOffsetY, scale ) {
-
 				if( supportsTransforms ) {
-					var origin = pageOffsetX +'px '+ pageOffsetY +'px',
-						transform = 'translate('+ -elementOffsetX +'px,'+ -elementOffsetY +'px) scale('+ scale +')';
+					var origin;
+					origin += pageOffsetX +'px '+ pageOffsetY +'px';
+					origin += transform = 'translate('+ -elementOffsetX +'px,'+ -elementOffsetY +'px) scale('+ scale +')';
 
 					space.style.transformOrigin = origin;
 					space.style.OTransformOrigin = origin;
 					space.style.msTransformOrigin = origin;
 					space.style.MozTransformOrigin = origin;
 					space.style.WebkitTransformOrigin = origin;
-
 					space.style.transform = transform;
 					space.style.OTransform = transform;
 					space.style.msTransform = transform;
@@ -129,8 +120,6 @@ if (Meteor.isClient) {
 //						space.style.zoom = scale;
 //					}
 //				}
-
-				level = scale;
 			}
 
 			function getScrollOffset() {
@@ -154,7 +143,7 @@ if (Meteor.isClient) {
 				to: function( options ) {
 					// Due to an implementation limitation we can't zoom in
 					// to another element without zooming out first
-					if( level == 1 ) {
+					if( engagedPage ) {
 						zoom.out();
 					}
 					else {
@@ -174,23 +163,17 @@ if (Meteor.isClient) {
 						}
 console.log("options " + "x "+options.x + " y "+options.y + " w "+options.width + " h "+options.height);
 
-//						// If width/height values are set, calculate scale from those values
-//						if( options.width !== undefined && options.height !== undefined ) {
-//							options.scale = Math.max( Math.min( window.innerWidth / options.width, window.innerHeight / options.height ), 1 );
-//						}
-
 						if( options.scale != 1 ) {
-							options.x /= zoomLevel;
-							options.y /= zoomLevel;
-
 							var scrollOffset = getScrollOffset();
 							scrollOffset.x /= zoomLevel;
 							scrollOffset.y /= zoomLevel;
-							//options.x /= zoomLevel;
-							//options.y /= zoomLevel;
+							options.x /= zoomLevel;
+							options.y /= zoomLevel;
 console.log("scrollOffset " + "x "+scrollOffset.x + " y "+scrollOffset.y);
 
 							magnify( scrollOffset.x, scrollOffset.y, options.x, options.y, 1 );
+							engagedPage = options.element;
+							$(engagedPage).hide();
 						}
 					}
 				},
@@ -200,17 +183,15 @@ console.log("scrollOffset " + "x "+scrollOffset.x + " y "+scrollOffset.y);
 				 */
 				out: function() {
 					var scrollOffset = getScrollOffset();
-					magnify( scrollOffset.x, scrollOffset.y, 0, 0, zoomLevel );
-					level = 0;
+					magnify( 0, 0, 0, 0, zoomLevel );
+					$(engagedPage).show();
+					engagedPage = 0;
 				},
 
 				// Alias
 				magnify: function( options ) { this.to( options ); },
 				reset: function() { this.out(); },
 
-				zoomLevel: function() {
-					return level;
-				}
 			};
 
 		})();

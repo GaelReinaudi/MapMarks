@@ -33,6 +33,7 @@ if (Meteor.isClient) {
 		'click' : function (e) {
 			if (typeof console !== 'undefined')
 				console.log("You clicked the page: " + this._id + " (" + e.pageX + "," + e.pageY + ")");
+			if(!engagedPage)
 				zoom.to({ element: e.target });
 			}
 		
@@ -144,7 +145,7 @@ if (Meteor.isClient) {
 					// Due to an implementation limitation we can't zoom in
 					// to another element without zooming out first
 					if( engagedPage ) {
-						zoom.out();
+					//	zoom.out();
 					}
 					else {
 						options.x = options.x || 0;
@@ -174,6 +175,7 @@ console.log("scrollOffset " + "x "+scrollOffset.x + " y "+scrollOffset.y);
 							magnify( scrollOffset.x, scrollOffset.y, options.x, options.y, 1 );
 							engagedPage = options.element;
 							$(engagedPage).hide();
+							console.log("Engaging");
 						}
 					}
 				},
@@ -186,12 +188,8 @@ console.log("scrollOffset " + "x "+scrollOffset.x + " y "+scrollOffset.y);
 					magnify( 0, 0, 0, 0, zoomLevel );
 					$(engagedPage).show();
 					engagedPage = 0;
+					console.log("Disengaging");
 				},
-
-				// Alias
-				magnify: function( options ) { this.to( options ); },
-				reset: function() { this.out(); },
-
 			};
 
 		})();

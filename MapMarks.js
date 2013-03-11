@@ -49,7 +49,7 @@ if (Meteor.isClient) {
 		
 		//! zoom out at the default level on startup
 		space = document.getElementById("theSpace");
-		anchorSpace = document.getElementById("centerRect");
+		anchorSpace = document.getElementById("centerSpace");
 		window.onmousewheel();
 		
 		
@@ -172,6 +172,8 @@ console.log("options " + "x "+options.x + " y "+options.y + " w "+options.width 
 							options.x /= zoomLevel;
 							options.y /= zoomLevel;
 console.log("scrollOffset " + "x "+scrollOffset.x + " y "+scrollOffset.y);
+options.x += anchorSpace.getBoundingClientRect().left;
+options.y += anchorSpace.getBoundingClientRect().top;
 
 							magnify( scrollOffset.x, scrollOffset.y, options.x, options.y, 1 );
 							engagedPage = options.element;

@@ -8,7 +8,9 @@ var engagedPage;// will be 0 if disengaged or the element it is engaged on
 
 if (Meteor.isClient) {
 	$(document).ready( function () {
-		alert('hello world');
+		$(".addPage").click( function () {
+			alert('hello world');
+		});
 	});	
 	Template.hello.greeting = function () {
 		return "Welcome to MapMarks.";

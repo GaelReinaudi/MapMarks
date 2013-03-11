@@ -67,7 +67,7 @@ if (Meteor.isClient) {
 				space.style.OTransition = '-o-transform 0.8s ease';
 				space.style.msTransition = '-ms-transform 0.8s ease';
 				space.style.MozTransition = '-moz-transform 0.8s ease';
-				space.style.WebkitTransition = '-webkit-transform 0.5s ease';
+				space.style.WebkitTransition = '-webkit-transform 0.8s ease';
 			}
 			// Zoom out if the user hits escape
 			document.addEventListener( 'keyup', function( event ) {
@@ -201,10 +201,13 @@ console.log("scrollOffset " + "x "+scrollOffset.x + " y "+scrollOffset.y);
 	var trY = 0;
 	var zoomLevel = 0.2;
 	window.onmousewheel = (function(e) {
+<<<<<<< HEAD
 		if(engagedPage) {
 			e.preventDefault();
 			return;
 		}
+=======
+>>>>>>> blah blah
 		if(e) {
 			e.preventDefault();
 			var scrolled = e.wheelDelta / 120.0;

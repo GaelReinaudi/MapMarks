@@ -127,7 +127,7 @@ if (Meteor.isClient) {
 						zoom.out();
 					}
 					else {
-						zoomLevel /= 2.0;
+						zoomLevel /= 1.50;
 						window.onmousewheel();
 					}
 				}

@@ -36,7 +36,9 @@
 	{{/each}}
 	<div class="pageWrapper"><div class="addPageS"></div></div>
 	</div>	
+
 <br />	
+
 	<div class="pages">
 	<div class="label">Cooking</div>
 	{{#each CookingTagged}}
@@ -44,6 +46,14 @@
 	{{/each}}
 	<div class="pageWrapper"><div class="addPageC"></div></div>
 	</div>
+<br />
+	<div class="pages">
+    <div class="label">Architecture</div>
+    {{#each CookingTagged}}
+        {{> page}}
+    {{/each}}
+    <div class="pageWrapper"><div class="addPageA"></div></div>
+    </div>
 </template>
 
 <template name="page">

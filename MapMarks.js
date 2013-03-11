@@ -87,7 +87,7 @@ if (Meteor.isClient) {
 			 */
 			function magnify( pageOffsetX, pageOffsetY, elementOffsetX, elementOffsetY, scale ) {
 				if( supportsTransforms ) {
-					var origin;
+					var origin = "";
 					origin += pageOffsetX +'px '+ pageOffsetY +'px';
 					origin += transform = 'translate('+ -elementOffsetX +'px,'+ -elementOffsetY +'px) scale('+ scale +')';
 
@@ -185,7 +185,6 @@ console.log("scrollOffset " + "x "+scrollOffset.x + " y "+scrollOffset.y);
 				 * Resets the document zoom state to its default.
 				 */
 				out: function() {
-					var scrollOffset = getScrollOffset();
 					magnify( 0, 0, 0, 0, zoomLevel );
 					$(engagedPage).show();
 					engagedPage = 0;

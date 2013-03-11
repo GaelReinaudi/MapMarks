@@ -11,7 +11,7 @@ h1 {
 	color: white;
 }
 .page {
-	margin-top: 25px;
+	margin-top: 0px;
 	margin-bottom: 25px;
 	margin-left: 0px;
 	margin-right: 25px;
@@ -38,7 +38,7 @@ h1 {
 }
 .pages {
 	width: 6100px;
-	padding: 75px 100px;
+	padding: 75px 75px;
 	background-color: gray;
 	border-radius: 50px;
 }

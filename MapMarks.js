@@ -1,5 +1,7 @@
 Pages = new Meteor.Collection('pages');
+//! the zoom object inspired by ZoomJS
 var zoom;
+var zoomLevel = 0.2;
 
 if (Meteor.isClient) {	
 	Template.hello.greeting = function () {
@@ -107,21 +109,21 @@ if (Meteor.isClient) {
 //				else {
 //					// Reset all values
 //					if( scale === 1 ) {
-//						document.body.style.position = '';
-//						document.body.style.left = '';
-//						document.body.style.top = '';
-//						document.body.style.width = '';
-//						document.body.style.height = '';
-//						document.body.style.zoom = '';
+//						space.style.position = '';
+//						space.style.left = '';
+//						space.style.top = '';
+//						space.style.width = '';
+//						space.style.height = '';
+//						space.style.zoom = '';
 //					}
 //					// Apply scale
 //					else {
-//						document.body.style.position = 'relative';
-//						document.body.style.left = ( - ( pageOffsetX + elementOffsetX ) / scale ) + 'px';
-//						document.body.style.top = ( - ( pageOffsetY + elementOffsetY ) / scale ) + 'px';
-//						document.body.style.width = ( scale * 100 ) + '%';
-//						document.body.style.height = ( scale * 100 ) + '%';
-//						document.body.style.zoom = scale;
+//						space.style.position = 'relative';
+//						space.style.left = ( - ( pageOffsetX + elementOffsetX ) / scale ) + 'px';
+//						space.style.top = ( - ( pageOffsetY + elementOffsetY ) / scale ) + 'px';
+//						space.style.width = ( scale * 100 ) + '%';
+//						space.style.height = ( scale * 100 ) + '%';
+//						space.style.zoom = scale;
 //					}
 //				}
 
@@ -172,11 +174,15 @@ if (Meteor.isClient) {
 							options.scale = Math.max( Math.min( window.innerWidth / options.width, window.innerHeight / options.height ), 1 );
 						}
 
-						if( options.scale != 1 ) {
-							options.x *= options.scale;
-							options.y *= options.scale;
+						if( 0){//options.scale != 1 ) {
+							//options.x *= options.scale;
+							//options.y *= options.scale;
 
 							var scrollOffset = getScrollOffset();
+							scrollOffset.x /= zoomLevel;
+							scrollOffset.y /= zoomLevel;
+							options.x /= zoomLevel;
+							options.y /= zoomLevel;
 
 							magnify( scrollOffset.x, scrollOffset.y, options.x, options.y, options.scale );
 						}
@@ -188,7 +194,7 @@ if (Meteor.isClient) {
 				 */
 				out: function() {
 					var scrollOffset = getScrollOffset();
-					magnify( scrollOffset.x, scrollOffset.y, 0, 0, 1 );
+					magnify( scrollOffset.x, scrollOffset.y, 0, 0, zoomLevel );
 					level = 1;
 				},
 

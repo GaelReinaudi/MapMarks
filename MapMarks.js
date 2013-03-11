@@ -60,7 +60,7 @@ if (Meteor.isClient) {
 				tags: tag ? [tag] : []
 				});
 			});
-		$(".addPage").click(function(e) {
+		$(".addPageS").click(function(e) {
 			if(typeof console !== 'undefined')
 				console.log("Adding a page,(" + e.pageX + "," + e.pageY + ")");
 			var tag = ["Science"];
@@ -70,7 +70,7 @@ if (Meteor.isClient) {
 				tags: tag ? [tag] : []
 				});
 			});
-		$(".addPage").click(function(e) {
+		$(".addPageC").click(function(e) {
 			if(typeof console !== 'undefined')
 				console.log("Adding a page,(" + e.pageX + "," + e.pageY + ")");
 			var tag = ["Cooking"];

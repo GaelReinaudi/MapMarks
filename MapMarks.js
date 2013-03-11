@@ -201,13 +201,10 @@ console.log("scrollOffset " + "x "+scrollOffset.x + " y "+scrollOffset.y);
 	var trY = 0;
 	var zoomLevel = 0.2;
 	window.onmousewheel = (function(e) {
-<<<<<<< HEAD
 		if(engagedPage) {
 			e.preventDefault();
 			return;
 		}
-=======
->>>>>>> blah blah
 		if(e) {
 			e.preventDefault();
 			var scrolled = e.wheelDelta / 120.0;

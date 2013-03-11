@@ -7,6 +7,7 @@
 		<div id="anchorSpace", style="width:10px; height:10px; position: absolute; border:1px solid #D00;"> 
 			{{> zoomingTarget}}
 			<div id="theSpace", style=""> 
+				<h1>BASALT</h1> 
 				{{> pages}}
 			</div>
 		</div>
@@ -21,10 +22,11 @@
 
 <template name="pages">
 	<div class="pages">
+	<div class="label">NEWS</div>
 	{{#each visibles}}
 		{{> page}}
 	{{/each}}
-	<div class="addPage"></div>
+	<div class="pageWrapper"><div class="addPage"></div></div>
 	</div>
 </template>
 

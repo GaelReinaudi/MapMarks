@@ -47,7 +47,7 @@ if (Meteor.isClient) {
 				console.log("Handdddddddddddddddddd,(" + e.pageX + "," + e.pageY + ")");
 			var tag = ["News"];
 			Pages.insert({
-				url: "www.google.com",
+				url: "http://www.nytimes.com",
 				timestamp: (new Date()).getTime(),
 				tags: tag ? [tag] : []
 				});

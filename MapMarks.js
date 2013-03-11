@@ -63,11 +63,11 @@ if (Meteor.isClient) {
 										'transform' in space.style;
 			if( supportsTransforms ) {
 				// The easing that will be applied when we zoom in/out
-				space.style.transition = 'transform 0.8s ease';
-				space.style.OTransition = '-o-transform 0.8s ease';
-				space.style.msTransition = '-ms-transform 0.8s ease';
-				space.style.MozTransition = '-moz-transform 0.8s ease';
-				space.style.WebkitTransition = '-webkit-transform 0.8s ease';
+				space.style.transition = 'transform 0.5s ease';
+				space.style.OTransition = '-o-transform 0.5s ease';
+				space.style.msTransition = '-ms-transform 0.5s ease';
+				space.style.MozTransition = '-moz-transform 0.5s ease';
+				space.style.WebkitTransition = '-webkit-transform 0.5s ease';
 			}
 			// Zoom out if the user hits escape
 			document.addEventListener( 'keyup', function( event ) {

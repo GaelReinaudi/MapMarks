@@ -1,7 +1,7 @@
 Pages = new Meteor.Collection('pages');
 //! the zoom object inspired by ZoomJS
 var zoom;
-var zoomLevel = 0.2;
+var zoomLevel = 0.1;
 var space;
 var anchorSpace;
 var engagedPage;// will be 0 if disengaged or the element it is engaged on
@@ -29,7 +29,11 @@ if (Meteor.isClient) {
 				console.log("You clicked the page: " + this._id + " (" + e.pageX + "," + e.pageY + ")");
 			if(!engagedPage)
 				zoom.to({ element: e.target });
-			}
+			},
+		'cccccclick' : function (e) {
+			if(!engagedPage)
+				Pages.remove({_id: this._id});
+			}	
 	});
 	Template.pages.events({
 		'click' : function (e) {
@@ -214,7 +218,7 @@ console.log("options " + "x "+options.x + " y "+options.y + " w "+options.width 
 						options.y /= zoomLevel;
 
 						var scale = 1;
-						scale = window.innerWidth / ($(options.element).width() + 40);
+						scale = window.innerWidth / ($(options.element).width() + 100);
 						options.x *= scale;
 						options.y *= scale;
 						options.x += anchorSpace.getBoundingClientRect().left;
@@ -245,7 +249,6 @@ console.log("options " + "x "+options.x + " y "+options.y + " w "+options.width 
 	var orY = 0;
 	var trX = 0;
 	var trY = 0;
-	var zoomLevel = 0.2;
 	window.onmousewheel = (function(e) {
 		if(engagedPage) {
 			e.preventDefault();

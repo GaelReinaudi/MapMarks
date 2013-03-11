@@ -68,6 +68,7 @@ if (Meteor.isClient) {
 			var tag = ["News"];
 			Pages.insert({
 				url: "http://www.nytimes.com",
+//				url: "http://localhost/~lycaon/nytimes.html",
 				timestamp: (new Date()).getTime(),
 				tags: tag ? [tag] : []
 				});
@@ -78,6 +79,7 @@ if (Meteor.isClient) {
 			var tag = ["Science"];
 			Pages.insert({
 				url: "http://www.nature.com",
+//				url: "http://localhost/~lycaon/nature.html",
 				timestamp: (new Date()).getTime(),
 				tags: tag ? [tag] : []
 				});
@@ -88,6 +90,7 @@ if (Meteor.isClient) {
 			var tag = ["Cooking"];
 			Pages.insert({
 				url: "http://www.foodnetwork.com",
+//				url: "http://localhost/~lycaon/foodnetwork.html",
 				timestamp: (new Date()).getTime(),
 				tags: tag ? [tag] : []
 				});

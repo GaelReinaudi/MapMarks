@@ -1,14 +1,48 @@
 /* CSS declarations go here */
 body {
 	//-webkit-transform: scale(0.33);
+	background-color: #ecebe4;
+}
+
+h1 {
+	font-size: 300px;
+	line-height: 40%;
+	font-family: sans-serif; 
+	color: white;
+>>>>>>> style changes, grid layout of pages, etc
 }
 
 .page {
-	margin: 0;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 0px;
+	margin-right: 25px;
+	padding: 0;
+	width: 1000px;
+	height: 500px;
+	color: white;
+	display: inline;
+	box-shadow: 0px 10px 10px #555555;
+}
+.addPage {
+	margin-top: 25px;
+	margin-bottom: 25px;
 	padding: 0;
 	height: 500px;
-	display: block;
-	color: white;
+	width: 960px;
+	border: 25px dashed;
+	border-radius: 50px;
+	border-color: #586886;
+}
+.addPage:hover {
+	border-color: #f0d4a8;
+	cursor: pointer;
+}
+.pages {
+	width: 3100px;
+	padding: 75px 100px;
+	background-color: gray;
+	border-radius: 50px;
 }
 .protectiveFilm {
 	position:absolute; 
@@ -24,12 +58,12 @@ body {
 	background-color: blue;
 }
 
-#drop {
+/*#drop {
   min-height: 100px;
   width: 200px;
   border: 3px dashed #ccc;
-  jjjjmargin: 10px;
-  jjjjpadding: 10px;
-}
+  //margin: 10px;
+  //padding: 10px;
+}*/
 
 #draggable { width: 150px; height: 150px; padding: 0.5em; 	background: #f0fF02;}

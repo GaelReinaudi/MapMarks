@@ -2,6 +2,8 @@ Pages = new Meteor.Collection('pages');
 //! the zoom object inspired by ZoomJS
 var zoom;
 var zoomLevel = 0.2;
+var space;
+var anchorSpace;
 
 if (Meteor.isClient) {	
 	Template.hello.greeting = function () {
@@ -47,13 +49,14 @@ if (Meteor.isClient) {
 			});
 		//! zoom out at the default level on startup
 		space = document.getElementById("theSpace");
+		anchorSpace = document.getElementById("centerRect");
 		window.onmousewheel();
 		
 		
 //////////////////////////// ZOOM 		
 		zoom = (function(){
 			// The current zoom level (scale)
-			var level = 1;
+			var level = zoomLevel;
 
 			// Check for transform support so that we can fallback otherwise
 			var supportsTransforms = 	'WebkitTransform' in space.style ||
@@ -73,7 +76,7 @@ if (Meteor.isClient) {
 
 			// Zoom out if the user hits escape
 			document.addEventListener( 'keyup', function( event ) {
-				if( level !== 1 && event.keyCode === 27 ) {
+				if( event.keyCode === 27 ) {
 					zoom.out();
 				}
 			} );
@@ -151,7 +154,7 @@ if (Meteor.isClient) {
 				to: function( options ) {
 					// Due to an implementation limitation we can't zoom in
 					// to another element without zooming out first
-					if( level !== 1 ) {
+					if( level == 1 ) {
 						zoom.out();
 					}
 					else {
@@ -161,30 +164,33 @@ if (Meteor.isClient) {
 						// If an element is set, that takes precedence
 						if( !!options.element ) {
 							// Space around the zoomed in element to leave on screen
-							var padding = 20;
-
-							options.width = options.element.getBoundingClientRect().width + ( padding * 2 );
-							options.height = options.element.getBoundingClientRect().height + ( padding * 2 );
+							var padding = 0;
+//							options.width = options.element.getBoundingClientRect().width + ( padding * 2 );
+//							options.height = options.element.getBoundingClientRect().height + ( padding * 2 );
 							options.x = options.element.getBoundingClientRect().left - padding;
 							options.y = options.element.getBoundingClientRect().top - padding;
+							options.x -= anchorSpace.getBoundingClientRect().left;
+							options.y -= anchorSpace.getBoundingClientRect().top;
 						}
+console.log("options " + "x "+options.x + " y "+options.y + " w "+options.width + " h "+options.height);
 
-						// If width/height values are set, calculate scale from those values
-						if( options.width !== undefined && options.height !== undefined ) {
-							options.scale = Math.max( Math.min( window.innerWidth / options.width, window.innerHeight / options.height ), 1 );
-						}
+//						// If width/height values are set, calculate scale from those values
+//						if( options.width !== undefined && options.height !== undefined ) {
+//							options.scale = Math.max( Math.min( window.innerWidth / options.width, window.innerHeight / options.height ), 1 );
+//						}
 
 						if( options.scale != 1 ) {
-							//options.x *= options.scale;
-							//options.y *= options.scale;
+							options.x /= zoomLevel;
+							options.y /= zoomLevel;
 
 							var scrollOffset = getScrollOffset();
 							scrollOffset.x /= zoomLevel;
 							scrollOffset.y /= zoomLevel;
-							options.x /= zoomLevel;
-							options.y /= zoomLevel;
+							//options.x /= zoomLevel;
+							//options.y /= zoomLevel;
+console.log("scrollOffset " + "x "+scrollOffset.x + " y "+scrollOffset.y);
 
-							magnify( scrollOffset.x, scrollOffset.y, options.x, options.y, options.scale );
+							magnify( scrollOffset.x, scrollOffset.y, options.x, options.y, 1 );
 						}
 					}
 				},
@@ -195,7 +201,7 @@ if (Meteor.isClient) {
 				out: function() {
 					var scrollOffset = getScrollOffset();
 					magnify( scrollOffset.x, scrollOffset.y, 0, 0, zoomLevel );
-					level = 1;
+					level = 0;
 				},
 
 				// Alias
@@ -214,7 +220,6 @@ if (Meteor.isClient) {
 	var orY = 0;
 	var trX = 0;
 	var trY = 0;
-	var space;
 	var zoomLevel = 0.2;
 	window.onmousewheel = (function(e) {
 		if(e) {

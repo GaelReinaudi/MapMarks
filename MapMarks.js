@@ -6,7 +6,10 @@ var space;
 var anchorSpace;
 var engagedPage;// will be 0 if disengaged or the element it is engaged on
 
-if (Meteor.isClient) {	
+if (Meteor.isClient) {
+	$(document).ready( function () {
+		alert('hello world');
+	});	
 	Template.hello.greeting = function () {
 		return "Welcome to MapMarks.";
 	};

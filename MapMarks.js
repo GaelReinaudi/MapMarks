@@ -7,9 +7,6 @@ var anchorSpace;
 var engagedPage;// will be 0 if disengaged or the element it is engaged on
 
 if (Meteor.isClient) {
-	$(document).ready( function () {
-		alert('hello world');
-	});	
 	Template.hello.greeting = function () {
 		return "Welcome to MapMarks.";
 	};
@@ -24,12 +21,6 @@ if (Meteor.isClient) {
 	
 	Template.page.events({
 		'mousemove' : function (e) {
-			var Speed = 50;
-			var randX = (Math.random() - 0.48) * Speed * 2;
-			var randY = (Math.random() - 0.48) * Speed * 2;
-			
-			//Panels.update({_id: this._id}, {$inc: {x: randX}});
-			//Panels.update({_id: this._id}, {$inc: {y: randY}});
 			if (typeof console !== 'undefined')
 				console.log("You moved on the page: " + "(" + e.pageX + "," + e.pageY + ")");
 			},
@@ -41,14 +32,21 @@ if (Meteor.isClient) {
 			}
 		
 	});
+	
 	Template.pages.visibles = function() {
 		return Pages.find({x: {$lt: 400}}, {sort: {score: -1}});
 	};
+	
 	Meteor.startup(function () {
 		$("#theRect").click(function(e) {
 			if(typeof console !== 'undefined')
 				console.log("Handler for .click() called,(" + e.pageX + "," + e.pageY + ")");
 			});
+		$(".addPage").click(function(e) {
+			if(typeof console !== 'undefined')
+				console.log("Handdddddddddddddddddd,(" + e.pageX + "," + e.pageY + ")");
+			});		
+		
 		//! zoom out at the default level on startup
 		space = document.getElementById("theSpace");
 		anchorSpace = document.getElementById("centerRect");
@@ -204,8 +202,10 @@ console.log("scrollOffset " + "x "+scrollOffset.x + " y "+scrollOffset.y);
 	var trY = 0;
 	var zoomLevel = 0.2;
 	window.onmousewheel = (function(e) {
-		if(engagedPage)
+		if(engagedPage) {
+			e.preventDefault();
 			return;
+		}
 		if(e) {
 			e.preventDefault();
 			var scrolled = e.wheelDelta / 120.0;

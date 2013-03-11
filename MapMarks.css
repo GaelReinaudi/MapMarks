@@ -10,7 +10,6 @@ h1 {
 	font-family: sans-serif; 
 	color: white;
 }
-
 .page {
 	margin-top: 25px;
 	margin-bottom: 25px;
@@ -38,7 +37,7 @@ h1 {
 	cursor: pointer;
 }
 .pages {
-	width: 3100px;
+	width: 6100px;
 	padding: 75px 100px;
 	background-color: gray;
 	border-radius: 50px;

@@ -30,7 +30,6 @@ if (Meteor.isClient) {
 			if(!engagedPage)
 				zoom.to({ element: e.target });
 			}
-		
 	});
 	
 	Template.pages.visibles = function() {
@@ -53,14 +52,34 @@ if (Meteor.isClient) {
 			});
 		$(".addPage").click(function(e) {
 			if(typeof console !== 'undefined')
-				console.log("Handdddddddddddddddddd,(" + e.pageX + "," + e.pageY + ")");
+				console.log("Adding a page,(" + e.pageX + "," + e.pageY + ")");
 			var tag = ["News"];
 			Pages.insert({
 				url: "http://www.nytimes.com",
 				timestamp: (new Date()).getTime(),
 				tags: tag ? [tag] : []
 				});
-			});		
+			});
+		$(".addPage").click(function(e) {
+			if(typeof console !== 'undefined')
+				console.log("Adding a page,(" + e.pageX + "," + e.pageY + ")");
+			var tag = ["Science"];
+			Pages.insert({
+				url: "http://www.nature.com",
+				timestamp: (new Date()).getTime(),
+				tags: tag ? [tag] : []
+				});
+			});
+		$(".addPage").click(function(e) {
+			if(typeof console !== 'undefined')
+				console.log("Adding a page,(" + e.pageX + "," + e.pageY + ")");
+			var tag = ["Cooking"];
+			Pages.insert({
+				url: "http://www.foodnetwork.com",
+				timestamp: (new Date()).getTime(),
+				tags: tag ? [tag] : []
+				});
+			});
 		
 		//! zoom out at the default level on startup
 		space = document.getElementById("theSpace");
@@ -187,7 +206,7 @@ console.log("options " + "x "+options.x + " y "+options.y + " w "+options.width 
 						options.y /= zoomLevel;
 
 						var scale = 1;
-						scale = window.innerWidth / 1050;
+						scale = window.innerWidth / 1030;
 						options.x *= scale;
 						options.y *= scale;
 						options.x += anchorSpace.getBoundingClientRect().left;

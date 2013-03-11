@@ -1,7 +1,7 @@
 Pages = new Meteor.Collection('pages');
 //! the zoom object inspired by ZoomJS
 var zoom;
-var zoomLevel = 0.1;
+var zoomLevel = 0.2;
 var space;
 var anchorSpace;
 var engagedPage;// will be 0 if disengaged or the element it is engaged on
@@ -58,6 +58,9 @@ if (Meteor.isClient) {
 	Template.pages.CookingTagged = function() {
 		return Pages.find({"tags" : ["Cooking"]});
 	};
+	Template.pages.ArchitectureTagged = function() {
+        return Pages.find({"tags" : ["Architecture"]});
+    };
 	
 	Meteor.startup(function () {
 		$("#theRect").click(function(e) {
@@ -69,8 +72,8 @@ if (Meteor.isClient) {
 				console.log("Adding a page,(" + e.pageX + "," + e.pageY + ")");
 			var tag = ["News"];
 			Pages.insert({
-				url: "http://www.nytimes.com",
-//				url: "http://localhost/~lycaon/nytimes.html",
+//				url: "http://www.nytimes.com",
+				url: "http://localhost/~lycaon/nytimes.html",
 				timestamp: (new Date()).getTime(),
 				tags: tag ? [tag] : []
 				});
@@ -80,8 +83,8 @@ if (Meteor.isClient) {
 				console.log("Adding a page,(" + e.pageX + "," + e.pageY + ")");
 			var tag = ["Science"];
 			Pages.insert({
-				url: "http://www.nature.com",
-//				url: "http://localhost/~lycaon/nature.html",
+//				url: "http://www.nature.com",
+				url: "http://localhost/~lycaon/nature.html",
 				timestamp: (new Date()).getTime(),
 				tags: tag ? [tag] : []
 				});
@@ -91,13 +94,23 @@ if (Meteor.isClient) {
 				console.log("Adding a page,(" + e.pageX + "," + e.pageY + ")");
 			var tag = ["Cooking"];
 			Pages.insert({
-				url: "http://www.foodnetwork.com",
-//				url: "http://localhost/~lycaon/foodnetwork.html",
+//				url: "http://www.foodnetwork.com",
+				url: "http://localhost/~lycaon/foodnetwork.html",
 				timestamp: (new Date()).getTime(),
 				tags: tag ? [tag] : []
 				});
 			});
-		
+		$(".addPageA").click(function(e) {
+            if(typeof console !== 'undefined')
+                console.log("Adding a page,(" + e.pageX + "," + e.pageY + ")");
+            var tag = ["Architecture"];
+            Pages.insert({
+//                url: "http://www.architecturaldigest.com",
+              url: "http://localhost/~lycaon/digest.html",
+                timestamp: (new Date()).getTime(),
+                tags: tag ? [tag] : []
+            	});
+        });		
 		//! zoom out at the default level on startup
 		space = document.getElementById("theSpace");
 		anchorSpace = document.getElementById("anchorSpace");

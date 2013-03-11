@@ -72,6 +72,16 @@ h1 {
     border-radius: 25px;
     border-color: #cbdafb;
 }
+.addPageA {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 460px;
+    width: 960px;
+    border: 20px dashed;
+    border-radius: 25px;
+    border-color: #cbdafb;
+}
 .addPage:hover {
 	border-color: #fba970;
 	cursor: pointer;
@@ -84,6 +94,11 @@ h1 {
     border-color: #fba970;
     cursor: pointer;
 }
+.addPageA:hover {
+    border-color: #fba970;
+    cursor: pointer;
+}
+
 .pages {
 	margin: 50px;
 	position: relative;

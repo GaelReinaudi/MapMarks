@@ -28,6 +28,22 @@
 	{{/each}}
 	<div class="pageWrapper"><div class="addPage"></div></div>
 	</div>
+	
+	<div class="pages">
+	<div class="label">Science</div>
+	{{#each ScienceTagged}}
+		{{> page}}
+	{{/each}}
+	<div class="pageWrapper"><div class="addPage"></div></div>
+	</div>	
+	
+	<div class="pages">
+	<div class="label">Cooking</div>
+	{{#each CookingTagged}}
+		{{> page}}
+	{{/each}}
+	<div class="pageWrapper"><div class="addPage"></div></div>
+	</div>
 </template>
 
 <template name="page">

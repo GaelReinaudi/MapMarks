@@ -38,12 +38,12 @@ if (Meteor.isClient) {
 	};	
 	Template.pages.NewsTagged = function() {
 		return Pages.find({"tags" : ["News"]});
-	};	
-	Template.pages.CookingTagged = function() {
-		return Pages.find({x: {$lt: 400}}, {sort: {score: -1}});
-	};	
+	};		
 	Template.pages.ScienceTagged = function() {
-		return Pages.find({x: {$lt: 400}}, {sort: {score: -1}});
+		return Pages.find({"tags" : ["Science"]});
+	};			
+	Template.pages.CookingTagged = function() {
+		return Pages.find({"tags" : ["Cooking"]});
 	};
 	
 	Meteor.startup(function () {

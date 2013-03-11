@@ -52,12 +52,33 @@ h1 {
 	border-radius: 25px;
 	border-color: #cbdafb;
 }
+.addPageC {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 460px;
+    width: 960px;
+    border: 20px dashed;
+    border-radius: 25px;
+    border-color: #cbdafb;
+}
+.addPageS {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 460px;
+    width: 960px;
+    border: 20px dashed;
+    border-radius: 25px;
+    border-color: #cbdafb;
+}
 .addPage:hover {
 	border-color: #fba970;
 	cursor: pointer;
 }
 .pages {
 	position: relative;
+	display: inline-block;
 	top: 500px;
 	width: 3150px;
 	padding: 75px 75px;
@@ -85,4 +106,6 @@ h1 {
 	position: absolute;
 //	border:10px solid blue;
 }
-
+#theSpace {
+	white-space: nowrap;
+}

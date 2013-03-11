@@ -174,7 +174,7 @@ if (Meteor.isClient) {
 							options.scale = Math.max( Math.min( window.innerWidth / options.width, window.innerHeight / options.height ), 1 );
 						}
 
-						if( 0){//options.scale != 1 ) {
+						if( options.scale != 1 ) {
 							//options.x *= options.scale;
 							//options.y *= options.scale;
 

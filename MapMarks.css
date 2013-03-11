@@ -76,6 +76,14 @@ h1 {
 	border-color: #fba970;
 	cursor: pointer;
 }
+.addPageC:hover {
+    border-color: #fba970;
+    cursor: pointer;
+}
+.addPageS:hover {
+    border-color: #fba970;
+    cursor: pointer;
+}
 .pages {
 	position: relative;
 	display: inline-block;
@@ -84,6 +92,7 @@ h1 {
 	padding: 75px 75px;
 	background-color: #5c6d8e;
 	border-radius: 50px;
+	white-space: normal;
 }
 .protectiveFilm {
 	position: absolute;
@@ -107,4 +116,5 @@ h1 {
 //	border:10px solid blue;
 }
 #theSpace {
+	white-space: nowrap;
 }

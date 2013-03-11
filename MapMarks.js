@@ -210,7 +210,7 @@ console.log("scrollOffset " + "x "+scrollOffset.x + " y "+scrollOffset.y);
 			var scrolled = e.wheelDelta / 120.0;
 			zoomLevel *= 1.0 + scrolled / 10;
 		}
-		if( 1 && zoomLevel <= 2.0 && zoomLevel >= 0.1) {
+		if(zoomLevel <= 2.0) {
 			var origin = trX +'px '+ trY +'px';
 			var transform = '';
 			//transform += ' translate('+ -trX +'px,'+ -trY +'px)';

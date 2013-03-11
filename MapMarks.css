@@ -19,8 +19,11 @@ h1 {
 	width: 1000px;
 	height: 500px;
 	color: white;
-	display: inline;
 	box-shadow: 0px 10px 10px #555555;
+}
+.pageWrapper {
+	display: inline;
+	position: relative;
 }
 .addPage {
 	margin-top: 25px;
@@ -37,7 +40,7 @@ h1 {
 	cursor: pointer;
 }
 .pages {
-	width: 6100px;
+	width: 3100px;
 	padding: 75px 75px;
 	background-color: gray;
 	border-radius: 50px;

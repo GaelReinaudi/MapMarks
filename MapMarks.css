@@ -85,6 +85,7 @@ h1 {
     cursor: pointer;
 }
 .pages {
+	margin: 50px;
 	position: relative;
 	display: inline-block;
 	top: 500px;

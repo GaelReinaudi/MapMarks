@@ -31,7 +31,15 @@ if (Meteor.isClient) {
 				zoom.to({ element: e.target });
 			}
 	});
-	
+	Template.pages.events({
+		'click' : function (e) {
+			if (typeof console !== 'undefined')
+				console.log("You clicked the page: " + this._id + " (" + e.pageX + "," + e.pageY + ")");
+			if(!engagedPage)
+				zoom.to({ element: e.target });
+			}
+	});
+		
 	Template.pages.visibles = function() {
 		return Pages.find({x: {$lt: 400}}, {sort: {score: -1}});
 	};	
@@ -206,7 +214,7 @@ console.log("options " + "x "+options.x + " y "+options.y + " w "+options.width 
 						options.y /= zoomLevel;
 
 						var scale = 1;
-						scale = window.innerWidth / 1030;
+						scale = window.innerWidth / ($(options.element).width() + 40);
 						options.x *= scale;
 						options.y *= scale;
 						options.x += anchorSpace.getBoundingClientRect().left;

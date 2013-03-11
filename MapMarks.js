@@ -39,8 +39,10 @@ if (Meteor.isClient) {
 		'click' : function (e) {
 			if (typeof console !== 'undefined')
 				console.log("You clicked the page: " + this._id + " (" + e.pageX + "," + e.pageY + ")");
-			if(!engagedPage)
-				zoom.to({ element: e.target });
+			if(!engagedPage) {
+				if($(e.target).width() > 1500)
+					zoom.to({ element: e.target });
+				}
 			}
 	});
 		
@@ -118,7 +120,13 @@ if (Meteor.isClient) {
 			// Zoom out if the user hits escape
 			document.addEventListener( 'keyup', function( event ) {
 				if( event.keyCode === 27 ) {
-					zoom.out();
+					if(engagedPage) {
+						zoom.out();
+					}
+					else {
+						zoomLevel /= 2.0;
+						window.onmousewheel();
+					}
 				}
 			} );
 			/**
